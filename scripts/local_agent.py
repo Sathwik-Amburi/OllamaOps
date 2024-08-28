@@ -74,6 +74,7 @@ albums = query_as_list(db, "SELECT Title FROM Album")
 
 
 vector_db = FAISS.from_texts(artists + albums, OllamaEmbeddings(model="llama3.1:latest"))
+# vector_db = FAISS.from_texts(artists + albums, OpenAIEmbeddings())
 retriever = vector_db.as_retriever(search_kwargs={"k": 5})
 description = """Use to look up values to filter on. Input is an approximate spelling of the proper noun, output is \
 valid proper nouns. Use the noun most similar to the search."""
